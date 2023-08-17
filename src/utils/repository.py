@@ -13,12 +13,15 @@ class AbstractRepository(ABC):
     async def get_all(self, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     async def get_by_id(self, instance_id):
         raise NotImplementedError
 
+    @abstractmethod
     async def update(self, instance_id, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     async def delete(self, instance_id):
         raise NotImplementedError
 
