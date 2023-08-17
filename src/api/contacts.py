@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from src.api.dependencies import UOWDependency
-from src.schemas.schemas import ContactCreate
-from src.service.contacts import ContactsService
+from src.schemas.contacts import ContactCreate
+from src.services.contacts import ContactsService
 
 router = APIRouter(prefix="/contacts", tags=["Contacts"])
 

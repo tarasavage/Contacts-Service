@@ -1,4 +1,4 @@
-from src.schemas.schemas import ContactCreate
+from src.schemas.contacts import ContactCreate
 from src.utils.unit_of_work import IUnitOfWork
 
 
@@ -12,9 +12,7 @@ class ContactsService:
             return contact_id
 
     @staticmethod
-    async def edit_contact(
-        uow: IUnitOfWork, contact_id: int, contact: ContactCreate
-    ):
+    async def edit_contact(uow: IUnitOfWork, contact_id: int, contact: ContactCreate):
         contact_dict = contact.model_dump()
         async with uow:
             cur_id = await uow.contacts.update(instance_id=contact_id, **contact_dict)
