@@ -1,23 +1,23 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import mapped_column, Mapped
 
 from src.db.database import Base
-from src.schemas.users import UserRead
+from src.schemas.schemas import ContactRead
 
 
 class Contact(Base):
     __tablename__ = "contacts"
 
-    id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String(80), index=True, nullable=False)
-    last_name = Column(String(80), index=True, nullable=False)
-    email = Column(String(80), index=True, nullable=True, unique=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+
+    first_name: Mapped[str]
+    last_name: Mapped[str] = mapped_column(index=True, nullable=False)
+    email: Mapped[str] = mapped_column(index=True, nullable=True, unique=True)
 
     def __str__(self) -> str:
         return f"Contact - First Name: {self.first_name}, Last Name: {self.last_name}, Email: {self.email}"
 
-    def to_read_model(self) -> UserRead:
-        return UserRead(
+    def to_read_model(self) -> ContactRead:
+        return ContactRead(
             id=self.id,
             first_name=self.first_name,
             last_name=self.last_name,

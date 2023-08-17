@@ -13,12 +13,15 @@ class AbstractRepository(ABC):
     async def get_all(self, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     async def get_by_id(self, instance_id):
         raise NotImplementedError
 
+    @abstractmethod
     async def update(self, instance_id, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     async def delete(self, instance_id):
         raise NotImplementedError
 
@@ -56,9 +59,7 @@ class SQLAlchemyRepository(AbstractRepository):
 
     async def delete(self, instance_id):
         stmt = (
-            delete(self.model)
-            .where(self.model.id == instance_id)
-            .returning(self.model)
+            delete(self.model).where(self.model.id == instance_id).returning(self.model)
         )
         result = await self.session.execute(stmt)
         return result.scalar_one().to_read_model()
