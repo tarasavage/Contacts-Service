@@ -12,7 +12,10 @@ engine = create_async_engine(
 )
 
 async_session_maker = async_sessionmaker(
-    engine, autocommit=False, autoflush=False, expire_on_commit=False,
+    engine,
+    autocommit=False,
+    autoflush=False,
+    expire_on_commit=False,
 )
 
 Base: DeclarativeMeta = declarative_base()
