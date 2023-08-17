@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi_cache.decorator import cache
 
 from src.api.dependencies import UOWDependency
 from src.schemas.contacts import ContactCreate
@@ -14,6 +15,7 @@ async def add_contact(uow: UOWDependency, contact: ContactCreate):
 
 
 @router.get("")
+@cache(expire=60)
 async def get_contacts(uow: UOWDependency, skip: int = 0, limit: int = 100):
     return await ContactsService().get_all_contacts(uow, skip=skip, limit=limit)
 
