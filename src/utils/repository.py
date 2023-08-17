@@ -59,9 +59,7 @@ class SQLAlchemyRepository(AbstractRepository):
 
     async def delete(self, instance_id):
         stmt = (
-            delete(self.model)
-            .where(self.model.id == instance_id)
-            .returning(self.model)
+            delete(self.model).where(self.model.id == instance_id).returning(self.model)
         )
         result = await self.session.execute(stmt)
         return result.scalar_one().to_read_model()
