@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
-from src.repositories.contacts import ContactsRepository
 from src.db.database import async_session_maker
+from src.repositories.contacts import ContactsRepository
 
 
 class IUnitOfWork(ABC):
