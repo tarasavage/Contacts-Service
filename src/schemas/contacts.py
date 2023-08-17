@@ -1,12 +1,11 @@
-from typing import Optional
-
-from pydantic import BaseModel, EmailStr, PositiveInt
+from pydantic import BaseModel, PositiveInt
 
 
 class ContactBase(BaseModel):
     first_name: str
     last_name: str
-    email: Optional[EmailStr]
+    address: str
+    user_id: int
 
 
 class ContactCreate(ContactBase):

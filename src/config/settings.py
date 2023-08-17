@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     DB_HOST: str = os.environ["DB_HOST"]
     DB_PORT: str = os.environ["DB_PORT"]
     DB_NAME: str = os.environ["DB_NAME"]
+    JWT_KEY: str = os.environ["JWT_KEY"]
 
     @property
     def DATABASE_URL(self) -> str:
