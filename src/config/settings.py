@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     DB_PORT: str = os.environ["DB_PORT"]
     DB_NAME: str = os.environ["DB_NAME"]
     JWT_KEY: str = os.environ["JWT_KEY"]
+    API_KEY: str = os.environ["API_KEY"]
+    CELERY_BROKER_URL: str = os.environ["CELERY_BROKER_URL"]
+    REDIS_URL: str = os.environ["REDIS_URL"]
 
     @property
     def DATABASE_URL(self) -> str:
